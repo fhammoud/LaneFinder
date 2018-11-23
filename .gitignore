@@ -1,4 +1,4 @@
 .vscode
 __pycache__
-test_images_output/*
-test_videos_output/*
+test_images_output/*.jpg
+test_videos_output/*.mp4
