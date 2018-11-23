@@ -1,5 +1,6 @@
 import numpy as np
-import cv2
+# from cv import cv2 as cv
+import cv2 as cv
 
 def grayscale(img):
     """Applies the Grayscale transform
@@ -7,17 +8,17 @@ def grayscale(img):
     but NOTE: to see the returned image as grayscale
     (assuming your grayscaled image is called 'gray')
     you should call plt.imshow(gray, cmap='gray')"""
-    return cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-    # Or use BGR2GRAY if you read an image with cv2.imread()
-    # return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    return cv.cvtColor(img, cv.COLOR_RGB2GRAY)
+    # Or use BGR2GRAY if you read an image with cv.imread()
+    # return cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     
 def canny(img, low_threshold, high_threshold):
     """Applies the Canny transform"""
-    return cv2.Canny(img, low_threshold, high_threshold)
+    return cv.Canny(img, low_threshold, high_threshold)
 
 def gaussian_blur(img, kernel_size):
     """Applies a Gaussian Noise kernel"""
-    return cv2.GaussianBlur(img, (kernel_size, kernel_size), 0)
+    return cv.GaussianBlur(img, (kernel_size, kernel_size), 0)
 
 def region_of_interest(img, vertices):
     """
@@ -37,10 +38,10 @@ def region_of_interest(img, vertices):
         ignore_mask_color = 255
         
     #filling pixels inside the polygon defined by "vertices" with the fill color    
-    cv2.fillPoly(mask, vertices, ignore_mask_color)
+    cv.fillPoly(mask, vertices, ignore_mask_color)
     
     #returning the image only where mask pixels are nonzero
-    masked_image = cv2.bitwise_and(img, mask)
+    masked_image = cv.bitwise_and(img, mask)
     return masked_image
 
 
@@ -123,13 +124,13 @@ def draw_lines(img, lines, color=[255, 0, 0], thickness=10):
     right_line_y2 = 330
 
     # Create left and right lines on the image
-    cv2.line(img, (left_line_x1,left_line_y1), (left_line_x2, left_line_y2), color, thickness)
-    cv2.line(img, (right_line_x1,right_line_y1), (right_line_x2,right_line_y2), color, thickness)
+    cv.line(img, (left_line_x1,left_line_y1), (left_line_x2, left_line_y2), color, thickness)
+    cv.line(img, (right_line_x1,right_line_y1), (right_line_x2,right_line_y2), color, thickness)
 #     for line in lines:
 #         for x1,y1,x2,y2 in line:
 #             slope = (y2-y1)/(x2-x1)
 #             print(slope)
-#             cv2.line(img, (x1, y1), (x2, y2), color, thickness)
+#             cv.line(img, (x1, y1), (x2, y2), color, thickness)
 
 def hough_lines(img, rho, theta, threshold, min_line_len, max_line_gap):
     """
@@ -137,7 +138,7 @@ def hough_lines(img, rho, theta, threshold, min_line_len, max_line_gap):
         
     Returns an image with hough lines drawn.
     """
-    lines = cv2.HoughLinesP(img, rho, theta, threshold, np.array([]), minLineLength=min_line_len, maxLineGap=max_line_gap)
+    lines = cv.HoughLinesP(img, rho, theta, threshold, np.array([]), minLineLength=min_line_len, maxLineGap=max_line_gap)
     line_img = np.zeros((img.shape[0], img.shape[1], 3), dtype=np.uint8)
     draw_lines(line_img, lines)
     return line_img
@@ -156,7 +157,7 @@ def weighted_img(img, initial_img, α=0.8, β=1., γ=0.):
     initial_img * α + img * β + γ
     NOTE: initial_img and img must be the same shape!
     """
-    return cv2.addWeighted(initial_img, α, img, β, γ)
+    return cv.addWeighted(initial_img, α, img, β, γ)
 
 def process_image(image):
     # NOTE: The output you return should be a color image (3 channel) for processing video below
