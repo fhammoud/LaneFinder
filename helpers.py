@@ -1,5 +1,4 @@
 import numpy as np
-# from cv import cv2 as cv
 import cv2 as cv
 
 def grayscale(img):
@@ -76,7 +75,7 @@ def draw_lines(img, lines, color=[255, 0, 0], thickness=10):
     for line in lines:
         for x1,y1,x2,y2 in line:
             
-            # Separate left and right lines and ignore nay horizontal lines
+            # Separate left and right lines and ignore any horizontal lines
             slope = (y2-y1)/(x2-x1)
             if 0.8 > slope > 0.4:
                 # right line
@@ -126,11 +125,6 @@ def draw_lines(img, lines, color=[255, 0, 0], thickness=10):
     # Create left and right lines on the image
     cv.line(img, (left_line_x1,left_line_y1), (left_line_x2, left_line_y2), color, thickness)
     cv.line(img, (right_line_x1,right_line_y1), (right_line_x2,right_line_y2), color, thickness)
-#     for line in lines:
-#         for x1,y1,x2,y2 in line:
-#             slope = (y2-y1)/(x2-x1)
-#             print(slope)
-#             cv.line(img, (x1, y1), (x2, y2), color, thickness)
 
 def hough_lines(img, rho, theta, threshold, min_line_len, max_line_gap):
     """
