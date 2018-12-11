@@ -1,16 +1,11 @@
-# **Finding Lane Lines on the Road** 
-
+# **Finding Lane Lines on the Road**
+## Udacity Self-Driving Car Engineer Nanodegree Project
 
 **Finding Lane Lines on the Road**
 
 The goals / steps of this project are the following:
 * Make a pipeline that finds lane lines on the road
 * Reflect on your work in a written report
-
-
-[//]: # (Image References)
-
-[image1]: ./examples/grayscale.jpg "Grayscale"
 
 ---
 
@@ -42,3 +37,12 @@ Another shortcoming could be if the resolution of the image is different. I woul
 A possible improvement would be to calculate the vertices and limits of my lines in a more robust manner that is independent of resolution.
 
 Another potential improvement could be to find a way to make the solid lines look less jittery in the video.
+
+---
+
+#### To Run
+* Clone project
+* If you have conda you can load my environment by running `conda env create -f environment.yml`
+* I use the same environment for all my Udacity Self-Driving Car course python projects
+* Run `python main.py`
+* Check the test_images_output and test_videos_output directories
